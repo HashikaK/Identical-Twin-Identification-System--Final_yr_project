@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Identical Twin Recognition</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <h1>Identical Twin Recognition System</h1>
+      <p>Click “Start Detection” to identify the person</p>
+    </header>
+
+    <div class="card">
+      <div class="video-section" id="videoSection">
+        <img id="videoFeed" src="" alt="Camera feed will appear here">
+        <div id="nameOverlay">Idle</div>
+      </div>
+    
+      <div class="status-panel">
+        <h2>Status</h2>
+        <p id="personName">Idle — Click the button to start detection</p>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn" onclick="startDetection()">▶ Start Detection</button>
+      </div>
+    </div>
+<!--
+    <footer>
+      <p>Developed with ❤️ using Flask • FaceNet • MTCNN • OpenCV</p>
+    </footer>
+  </div>
+-->
+  <script>
+    const statusEl = document.getElementById('personName');
+    const videoEl = document.getElementById('videoFeed');
+    const videoSection = document.getElementById('videoSection');
+    const nameOverlay = document.getElementById('nameOverlay');
+    const startBtn = document.getElementById('startBtn');
+
+    let pollingInterval = null;
+
+    async function pollStatus() {
+      try {
+        const res = await fetch('/get_name');
+        const j = await res.json();
+
+        // update textual status and overlay name
+        statusEl.innerText = j.name;
+        // overlay shows name (without the trailing celebration text)
+        let overlayText = j.name.replace('  ... Detection complete', '');
+        if (overlayText === "" || overlayText.includes("Detecting") || overlayText.includes("Idle")) {
+          nameOverlay.innerText = "Detecting...";
+        } else {
+          nameOverlay.innerText = overlayText;
+        }
+
+        // color feedback on overlay
+        nameOverlay.classList.remove('text-green', 'text-red');
+        if (j.result === 'known' && !j.in_progress) {
+          nameOverlay.classList.add('text-green');
+        } else if (j.result === 'unknown' && !j.in_progress) {
+          nameOverlay.classList.add('text-red');
+        }
+
+        if (j.in_progress) {
+          startBtn.innerText = " Detecting...";
+          startBtn.disabled = true;
+          videoSection.classList.remove('border-green', 'border-red', 'border-flash');
+        } else {
+          // detection complete
+          startBtn.innerText = "▶ Start Detection";
+          startBtn.disabled = false;
+
+          if (j.result === 'known') {
+            videoSection.classList.add('border-green', 'border-flash');
+          } else if (j.result === 'unknown') {
+            videoSection.classList.add('border-red', 'border-flash');
+          }
+
+          // stop current feed so we can restart fresh later
+          videoEl.src = '';
+
+          // stop polling
+          if (pollingInterval) {
+            clearInterval(pollingInterval);
+            pollingInterval = null;
+          }
+        }
+      } catch (err) {
+        console.error("Polling error:", err);
+      }
+    }
+
+    function startDetection() {
+      // Clear UI state
+      videoSection.classList.remove('border-green', 'border-red', 'border-flash');
+      nameOverlay.innerText = "Detecting...";
+      statusEl.innerText = "Detecting...";
+
+      // Force unique URL to avoid caching/reuse
+      const ts = Date.now();
+      videoEl.src = "/video_feed?ts=" + ts;
+
+      startBtn.disabled = true;
+      startBtn.innerText = " Detecting...";
+
+      // start polling to read state & overlay
+      if (pollingInterval) clearInterval(pollingInterval);
+      pollingInterval = setInterval(pollStatus, 600);
+    }
+  </script>
+</body>
+</html>
