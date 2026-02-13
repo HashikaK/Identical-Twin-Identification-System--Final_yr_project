@@ -1,0 +1,162 @@
+/* ---------- Global ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #050505, #1a1a1a);
+  color: #eaeaea;
+}
+
+.main-container {
+  text-align: center;
+  width: 90%;
+  max-width: 700px;
+}
+
+header h1 {
+  color: #00ffae;
+  font-size: 1.9rem;
+  margin-bottom: 0.3em;
+  text-shadow: 0 0 10px rgba(0, 255, 174, 0.7);
+}
+
+header p {
+  color: #bdbdbd;
+  font-size: 0.95rem;
+  margin-bottom: 1.8em;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 40px rgba(0, 255, 174, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.video-section {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.video-section img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 15px;
+  border: 4px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s ease;
+}
+
+/* ---------- Overlay Name ---------- */
+#nameOverlay {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+.text-green {
+  color: #00ffae !important;
+  text-shadow: 0 0 10px rgba(0, 255, 174, 0.8);
+}
+
+.text-red {
+  color: #ff5a5a !important;
+  text-shadow: 0 0 10px rgba(255, 90, 90, 0.7);
+}
+
+/* ---------- Status Panel ---------- */
+.status-panel {
+  margin-top: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 14px 20px;
+  border: 1px solid rgba(0, 255, 174, 0.25);
+}
+
+.status-panel h2 {
+  color: #00ffae;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.status-panel p {
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.4px;
+}
+
+/* ---------- Button ---------- */
+.controls {
+  margin-top: 20px;
+}
+
+.controls button {
+  background: linear-gradient(135deg, #00ffae, #00cc88);
+  color: #0a0a0a;
+  border: none;
+  padding: 12px 26px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controls button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #00e69d, #00b67a);
+  box-shadow: 0 0 20px rgba(0, 255, 174, 0.4);
+}
+
+.controls button:disabled {
+  background: #444;
+  cursor: not-allowed;
+  color: #ccc;
+}
+
+/* ---------- Border Colors ---------- */
+.border-green img {
+  border-color: rgba(0, 255, 174, 0.9) !important;
+  box-shadow: 0 0 25px rgba(0, 255, 174, 0.6);
+}
+
+.border-red img {
+  border-color: rgba(255, 85, 85, 0.95) !important;
+  box-shadow: 0 0 25px rgba(255, 85, 85, 0.4);
+}
+
+/* ---------- Flash Animation ---------- */
+@keyframes flashGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+.border-flash img {
+  animation: flashGlow 1s ease-in-out infinite;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #888;
+  letter-spacing: 0.3px;
+}
