@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twin Face Identification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at top, #064e3b 0%, #022c22 60%, #001a14 100%);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center text-white">
+
+<div class="w-full max-w-xl bg-white/5 backdrop-blur-xl 
+            p-10 rounded-3xl shadow-2xl shadow-emerald-500/20 
+            border border-emerald-500/20">
+
+    <!-- Title -->
+    <div class="text-center mb-10">
+        <h1 class="text-2xl md:text-4xl font-bold tracking-wide">
+            Twin Face <span class="text-emerald-400">Identification</span>
+        </h1>
+        <p class="text-gray-300 mt-3 text-sm md:text-base">
+            Upload two images to identify each person individually
+        </p>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" enctype="multipart/form-data" class="space-y-8">
+
+        <!-- Image 1 -->
+        <div>
+            <label class="block mb-3 text-emerald-300 font-medium">
+                Upload Image 1
+            </label>
+            <input type="file" name="image1" required
+                   class="w-full bg-black/40 border border-emerald-500/30 
+                          rounded-xl p-4 text-gray-300
+                          file:mr-4 file:py-1 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-emerald-500 file:text-black
+                          hover:file:bg-emerald-400
+                          transition duration-300">
+        </div>
+
+        <!-- Image 2 -->
+        <div>
+            <label class="block mb-3 text-emerald-300 font-medium">
+                Upload Image 2
+            </label>
+            <input type="file" name="image2" required
+                   class="w-full bg-black/40 border border-emerald-500/30 
+                          rounded-xl p-4 text-gray-300
+                          file:mr-4 file:py-1 file:px-4
+                          file:rounded-full file:border-0
+                          file:text-sm file:font-semibold
+                          file:bg-emerald-500 file:text-black
+                          hover:file:bg-emerald-400
+                          transition duration-300">
+        </div>
+
+        <!-- Button -->
+        <div class="text-center pt-4">
+            <button type="submit"
+                class="px-6 py-2 rounded-full font-semibold text-lg
+                       bg-gradient-to-r from-emerald-600 to-emerald-400
+                       hover:from-emerald-500 hover:to-emerald-300
+                       transition-all duration-300
+                       shadow-xl shadow-emerald-500/40
+                       text-black">
+                Identify Persons
+            </button>
+        </div>
+
+    </form>
+
+    <!-- Results -->
+    {% if result1 %}
+    <div class="mt-10 p-6 bg-black/50 rounded-2xl 
+                border border-emerald-500/30
+                shadow-lg shadow-emerald-500/20">
+
+        <h2 class="text-2xl font-semibold text-emerald-400 mb-4 text-center">
+            Identification Results
+        </h2>
+
+        <div class="space-y-3 text-lg text-gray-200">
+            <p class="flex justify-between border-b border-emerald-500/20 pb-2">
+                <span class="text-gray-400">Person 1</span>
+                <span class="font-semibold text-emerald-300">
+                    {{ result1 }}
+                </span>
+            </p>
+
+            <p class="flex justify-between pt-2">
+                <span class="text-gray-400">Person 2</span>
+                <span class="font-semibold text-emerald-300">
+                    {{ result2 }}
+                </span>
+            </p>
+        </div>
+    </div>
+    {% endif %}
+<!-- Back Button -->
+        <div class="text-center mt-8">
+            <a href="/" class="text-emerald-400 hover:text-emerald-300 transition">
+                ← Back to Home
+            </a>
+        </div>
+</div>
+
+</body>
+</html>

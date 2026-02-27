@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Identical Twin Identification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            background: radial-gradient(circle at center, #0f2d28 0%, #061312 60%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center text-white">
+
+    <div class="text-center space-y-8">
+
+        <!-- Icon Circle -->
+        <div class="flex justify-center">
+            <div class="w-20 h-20 rounded-full bg-emerald-500/20 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 11c1.657 0 3-1.567 3-3.5S13.657 4 12 4s-3 1.567-3 3.5S10.343 11 12 11zM6 20v-1a6 6 0 0112 0v1"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Title -->
+        <div>
+            <h1 class="text-4xl md:text-5xl font-bold">
+                Identical Twin
+                <span class="text-emerald-400">Identification</span>
+            </h1>
+            <p class="mt-4 text-gray-400 max-w-xl mx-auto">
+                Advanced face comparison powered by deep learning.<br>
+                Upload photos or use webcam captures to identify similarities.
+            </p>
+        </div>
+
+       <!-- Buttons -->
+<div class="flex justify-center gap-8 mt-8">
+
+    <!-- Upload Button -->
+    <a href="/upload">
+        <button class="flex items-center gap-3 px-9 py-2 rounded-full 
+           bg-emerald-500 hover:bg-emerald-400 
+           transition duration-300 
+           shadow-xl shadow-emerald-500/30
+           font-semibold text-black text-lg">
+
+            <!-- Upload Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 fill="none" viewBox="0 0 24 24" 
+                 stroke-width="1.8" stroke="currentColor" 
+                 class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" 
+                      d="M12 16V4m0 0l-4 4m4-4l4 4M4 20h16" />
+            </svg>
+
+            Upload
+        </button>
+    </a>
+
+    <!-- Webcam Button -->
+    <a href="/webcam">
+        <button class="flex items-center gap-3 px-9 py-2 rounded-full 
+           bg-emerald-500 hover:bg-emerald-400 
+           transition duration-300 
+           shadow-xl shadow-emerald-500/30
+           font-semibold text-black text-lg">
+
+            <!-- Camera Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                 fill="none" viewBox="0 0 24 24" 
+                 stroke-width="1.8" stroke="currentColor" 
+                 class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" 
+                      d="M3 7h3l-2-3h8l2 3h3v13H3V7z"/>
+                <circle cx="12" cy="13" r="4"/>
+            </svg>
+
+            Webcam
+        </button>
+    </a>
+
+</div>
+</div>
+</body>
+</html>
